@@ -1,6 +1,6 @@
 let rootFolder;
 
-
+rootFolder = await window.showDirectoryPicker();
 
 document.addEventListener("DOMContentLoaded", function () {
 
