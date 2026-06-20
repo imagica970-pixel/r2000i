@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FANUC R2000 I</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+
+<body>
+
+
+    <!-- MENU ICON -->
+
+
+    <!-- SIDE MENU -->
+    <div class="side-menu" id="sideMenu">
+        <br>
+        <br>
+        <a href="index.html">HOME</a>
+
+        <a href="og.html">OVERHANG</a>
+
+        <a href="diagram.html">DIAGRAM</a>
+
+    </div>
+
+
+
+    <div class="container">
+
+        <div class="titlee" id="vb">FANUC R2000i ERP</div>
+
+        <form autocomplete="off">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>CUSTOMER</label>
+
+                    <select id="customer" onchange="loadCustomerData()" required>
+                        <option value="">SELECT CUSTOMER</option>
+
+                        <option value="raghvan">RAGHVAN</option>
+                        <option value="kalpataru">KALPATARU</option>
+                        <option value="stdrev">STDREV</option>
+                        <option value="stdrevdeck">STDREV DECK</option>
+                        <option value="kalptarudeck">KALPATARU DECK</option>
+                        <option value="lodha">LODHA</option>
+                        <option value="forsa">FORSA</option>
+                        <option value="wt">WT</option>
+                        <option value="ip">NEW LODHA</option>
+                        <option value="nonstandard">NONSTANDARD</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>FIXTURE SIDE</label>
+
+                    <select id="fixtureSide" onchange="setFixtureData()" required>
+                        <option value="">SELECT FIXTURE SIDE</option>
+                        <option value="lefts">LEFT</option>
+                        <option value="rights">RIGHT</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>WIDTH</label>
+                    <input type="number" id="wh" required>
+                </div>
+
+                <div class="form-group">
+                    <label>LENGTH</label>
+                    <input type="number" id="lh" required onchange="runLengthFunction(this.value)">
+                </div>
+
+
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+
+
+                <div class="form-group">
+                    <label>PROGRAM NAME</label>
+                    <input type="text" id="nm" autocomplete="off" oninput="this.value = this.value.toUpperCase()"
+                        required>
+                </div>
+
+
+                <div class="form-group">
+                    <label>U TOOL NO</label>
+                    <input type="number" id="tl" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label>UFRAME NO</label>
+                    <input type="number" id="u1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>REF UFRAME NO</label>
+                    <input type="number" id="u2" required>
+                </div>
+
+
+            </div>
+
+            <div class="form-grid">
+
+
+
+                <div class="form-group">
+                    <label>NON REF UFRAME NO</label>
+                    <input type="number" id="u3" required>
+                </div>
+
+
+                <!-- <div class="form-group">
+                    <label>CELL NO.</label>
+                    <select required id="ccp">
+                        <option value="">SELECT</option>
+                        <option value="ct">AUTO</option>
+                    </select>
+                </div> -->
+     
+                  <div class="form-group">
+                    <label>UP UFRAME NO</label>
+                    <input type="number" id="u4" required>
+                </div>
+
+                   <div class="form-group">
+                    <label>PANNEL TYPE</label>
+                    <select required id="tp">
+                        <option value="">SELECT</option>
+                        <option>WALL</option>
+                        <option>DECK</option>
+                    </select>
+                </div>
+
+                <div class="form-group button-box">
+                    <button type="submit" class="submit-btn">SUBMIT</button>
+                </div>
+
+            </div>
+
+            <div class="form-grid">
+
+
+
+
+            </div>
+
+        </form>
+
+        <hr>
+
+        <h2>DISTANCE CONFIGURATION</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>SR.NO</th>
+                    <th>DISTANCE</th>
+                    <th>TYPE</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+
+            <tbody id="tableBody"></tbody>
+
+        </table>
+
+        <button class="add-row" id="ads" onclick="addRow(); ">ADD ROW</button>
+
+    </div>
+
+    <script>
+        let sr = 1;
+        let currentData = {};
+
+        document.getElementById("wh").addEventListener("input", function () {
+            if (this.value > 600) {
+                this.value = 600;
+            }
+        });
+
+        document.getElementById("lh").addEventListener("input", function () {
+            if (this.value > 2450) {
+                this.value = 2450;
+            }
+        });
+
+        document.getElementById("tl").addEventListener("input", function () {
+            if (this.value > 9) {
+                this.value = 9;
+            }
+        });
+
+        document.getElementById("u1").addEventListener("input", function () {
+            if (this.value > 9) {
+                this.value = 9;
+            }
+        });
+
+        document.getElementById("u2").addEventListener("input", function () {
+            if (this.value > 9) {
+                this.value = 9;
+            }
+        });
+
+        document.getElementById("u3").addEventListener("input", function () {
+            if (this.value > 9) {
+                this.value = 9;
+            }
+        });
+
+
+
+        let rowCount = 0;
+
+        function addRow() {
+
+
+            let rows = document.querySelectorAll("#tableBody tr");
+
+            if (rows.length >= 8) {
+                alert("Maximum 8 rows allowed");
+                return;
+            }
+
+            rowCount++;
+
+            let table = document.getElementById("tableBody");
+
+            let row = table.insertRow();
+
+            row.innerHTML = `
+
+<td></td>
+
+<td>
+<input type="number" id="sty${rowCount}">
+</td>
+
+<td class="checkbox-group">
+
+<label>
+<input type="radio" name="group${rowCount}" value="25"> U
+</label>
+
+<label>
+<input type="radio" name="group${rowCount}" value="35"> U-LIP
+</label>
+
+<label>
+<input type="radio" name="group${rowCount}" value="10"> I
+</label>
+
+</td>
+
+<td>
+<button type="button" class="remove-btn" onclick="removeRow(this)">REMOVE</button>
+</td>
+
+`;
+
+            updateSr();
+
+
+
+        }
+
+        /* REMOVE ROW */
+
+        function removeRow(btn) {
+
+            let row = btn.parentNode.parentNode;
+            row.remove();
+
+            updateSr();
+
+        }
+
+
+
+        document.querySelector("form").addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            let rows = document.querySelectorAll("#tableBody tr")
+
+            let totalDistance = 0
+
+            for (let i = 0; i < rows.length; i++) {
+
+                let distanceInput = rows[i].querySelector("input[type='number']")
+                let distance = Number(distanceInput.value)
+
+                let type = rows[i].querySelector("input[type='radio']:checked")
+
+                if (distanceInput.value === "" || !type) {
+
+                    alert("Please fill DISTANCE and select TYPE in row " + (i + 1))
+                    return
+
+                }
+
+
+
+                if (distance < 125) {
+
+                    alert("Distance in row " + (i + 1) + " should not be less than 125")
+
+                    return
+
+                }
+
+
+
+
+                if (distance > 410) {
+
+                    alert("Distance in row " + (i + 1) + " should not be greater than 410")
+
+                    return
+
+                }
+
+                totalDistance += distance
+
+            }
+
+            /* LENGTH VALUE */
+
+            let length = Number(document.getElementById("lh").value)
+
+            /* ONLY CHECK IF ROWS EXIST */
+
+            if (rows.length > 0) {
+
+                if (totalDistance + 115 > length) {
+
+                    alert("Total distance + 92 should be less than LENGTH")
+
+                    return
+
+                }
+
+            }
+
+            downloadSrcFile();
+
+
+
+        })
+
+
+        /* AUTO SR.NO UPDATE */
+
+        function updateSr() {
+
+            let rows = document.querySelectorAll("#tableBody tr");
+
+            rows.forEach((row, index) => {
+                row.cells[0].innerText = index + 1;
+            });
+
+        }
+
+
+        /* ONLY ONE CHECKBOX PER ROW */
+
+        function singleCheck(clicked) {
+
+            let checkboxes = clicked.closest("td").querySelectorAll("input[type='checkbox']");
+
+            checkboxes.forEach(box => {
+                if (box !== clicked) {
+                    box.checked = false;
+                }
+            });
+
+        }
+
+
+
+
+    </script>
+
+
+    <script src="Script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluminium Panel Report</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            background: #121212;
+            color: #ffffff;
+            padding: 15px;
+            margin: 0;
+        }
+
+       
+.container {
+    width: calc(100% - 300px);
+    margin-left: 240px;
+    background: rgb(0, 0, 0);
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        select,
+        input {
+            padding: 8px;
+            font-weight: bold;
+            background: #2a2a2a;
+            color: #ffffff;
+            border: 1px solid #444;
+            border-radius: 5px;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        button {
+            padding: 10px;
+            background: #3a6cff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .panel {
+            position: relative;
+            border: 2px solid #ffffff;
+            height: 160px;
+            background: #181818;
+            display: inline-block;
+        }
+
+        .stiffener {
+            position: absolute;
+            top: 0;
+            height: 100%;
+        }
+
+        .u {
+            background-color: orange;
+            width: 6px;
+        }
+
+        .ulip {
+            background-color: #00c853;
+            width: 8px;
+        }
+
+        .i {
+            background-color: #2979ff;
+            width: 4px;
+        }
+
+        .label {
+            position: absolute;
+            background: #ffffff;
+            color: #000000;
+            padding: 2px 5px;
+            font-size: 10px;
+            border-radius: 4px;
+            top: 8px;
+            white-space: nowrap;
+        }
+
+        .footer {
+            margin-top: 25px;
+            color: #cccccc;
+            font-size: 14px;
+        }
+
+        .note {
+            font-size: smaller;
+        }
+
+
+        .gauge-display{
+            font-size: smaller;
+            margin-left: 10px;
+            margin-top: 4px;
+        }
+
+
+        .ga{
+            display: flex;
+        }
+
+        @media (max-width: 600px) {
+            .form-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+
+
+        
+.menu-icon {
+    position: fixed;
+    top: 33px;
+    left: 33px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1001;
+    color: white;
+    background: #885a3b;
+    padding: 5px 12px;
+    border-radius: 5px;
+}
+
+/* SIDE MENU */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #222;
+    padding-top: 70px;
+    z-index: 1000;
+}
+
+.side-menu a {
+    display: block;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid #444;
+}
+
+.side-menu a:hover {
+    background: #ff6600;
+}
+
+
+.titlee {
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#vb {
+    font-size: 42px;
+    color: #ffcc00;
+    margin-bottom: 60px;
+    text-shadow: 0 0 10px #ffcc00d5;
+}
+
+    </style>
+</head>
+
+<body>
+
+    
+<!--     
+    <div class="menu-icon" onclick="toggleMenu()">
+    ☰
+</div> -->
+
+<!-- SIDE MENU -->
+<div class="side-menu" id="sideMenu">
+<br>
+<br>
+    <a href="index.html">HOME</a>
+
+    <a href="og.html">OVERHANG</a>
+
+      <a href="diagram.html">DIAGRAM</a>
+
+</div>
+    <div class="container">
+        <div class="titlee" id="vb">PANNEL DIAGRAM</div>
+        <br>
+        <div class="form-group">
+            <div class="form-group" autocomplete="off">
+                <select id="customer" onchange="resetPanel()">
+                    <option value="STDREV_DECK">STDREV_DECK</option>
+                    <option value="KALPATARU_DECK">KALPATARU_DECK</option>
+                    <option value="RAGHAVAN">RAGHAVAN</option>
+                    <option value="KALPATARU">KALPATARU</option>
+                    <option value="STDREV">STDREV</option>
+                    <option value="WT">WT</option>
+                    <option value="WX">WX</option>
+                </select>
+
+                <input type="number" id="width" value="600" placeholder="Width" autocomplete="off">
+                <input type="number" id="length" value="2400" placeholder="Length" autocomplete="off">
+                <button onclick="generate()">Submit</button>
+            </div>
+        </div>
+
+        <div class="note">NOTE : The gap is from center of stiffner to reference</div>
+
+        <br>
+        <div id="panel" class="panel"></div>
+        <div class="footer" id="summary"></div>
+        <br>
+
+        <div class="ga">
+<div class="gaugeg" id="gaugeg">Gauge :</div>
+        <div class="gauge-display" id="gauge"></div>
+
+        </div>
+
+        
+
+    </div>
+
+    <script>
+        function generate() {
+            let customer = document.getElementById("customer").value;
+            let length = parseInt(document.getElementById("length").value);
+
+            if (length > 2500) { alert("Panel length cannot exceed 2500 mm."); return; }
+            if (length <= 0 || isNaN(length)) { alert("Please enter a valid panel length."); return; }
+
+            let panel = document.getElementById("panel");
+            let summary = document.getElementById("summary");
+            panel.innerHTML = "";
+            summary.innerHTML = "";
+
+            // -------- Dynamic Panel Scaling --------
+            let ratio = 0.3; // pixels per mm
+            panel.style.width = (length * ratio) + "px";
+
+            let positions = [];
+            let gapPattern = [];
+            let typePattern = [];
+
+            // -------- Customer-specific rules --------
+            if (customer === "WT") {
+                let typeCount = { u: 0, ulip: 0, i: 0 };
+                if (length >= 250 && length <= 365) positions.push(length / 2);
+                else if (length <= 565) positions.push(250);
+                else {
+                    let pos = 250;
+                    positions.push(pos);
+                    while (true) {
+                        pos += 200;
+                        if (pos >= length) break;
+                        positions.push(pos);
+                    }
+                }
+                // Remove last if gap < 116
+                if (positions.length > 0) {
+                    let lastGap = length - positions[positions.length - 1];
+                    if (lastGap < 116) positions.pop();
+                }
+                drawStiffeners(positions, ["u"], ratio, panel, summary, typeCount);
+                return;
+            }
+
+            if (customer === "WX") {
+                let typeCount = { u: 0, ulip: 0, i: 0 };
+                let pos = 0;
+                if (length >= 250 && length <= 599) {
+                    // Single center stiffener
+                    positions.push(length / 2);
+                }
+                else if (length >= 600 && length <= 799) {
+                    // Two stiffeners: 200 from start and 200 from end
+                    positions.push(200);
+                    positions.push(length - 200);
+                }
+                else if (length >= 800) {
+                    // Multiple stiffeners every 200 mm
+                    let pos = 0;
+                    while (true) {
+                        pos += 200;
+                        if (pos >= length) break;
+                        positions.push(pos);
+                    }
+                }
+
+                if (positions.length > 0) {
+                    let lastGap = length - positions[positions.length - 1];
+                    if (lastGap < 116) positions.pop();
+                }
+                drawStiffeners(positions, ["u"], ratio, panel, summary, typeCount);
+                return;
+            }
+
+            // -------- Other Customers --------
+            if (customer === "STDREV_DECK") { gapPattern = [300]; typePattern = ["i"]; }
+            if (customer === "KALPATARU_DECK") { gapPattern = [250, 300, 300, 300, 300, 300, 300, 300,]; typePattern = ["i", "i", "i", "i", "i", "i", "i", "i",]; }
+            if (customer === "RAGHAVAN") { gapPattern = [225, 250, 275, 275, 275, 300, 275, 300, 225]; typePattern = ["u", "ulip", "u", "ulip", "u", "ulip", "u", "u"]; }
+            if (customer === "KALPATARU") { gapPattern = [225, 225, 275, 275, 300, 300, 300, 300, 200]; typePattern = ["u", "ulip", "u", "ulip", "u", "ulip", "u", "u"]; }
+            if (customer === "STDREV") { gapPattern = [225, 225, 275, 275, 300, 300, 300, 350, 150]; typePattern = ["u", "ulip", "u", "ulip", "u", "ulip", "u", "u"]; }
+
+            let center = 0, gapIndex = 0;
+            while (true) {
+                let nextGap = gapPattern[gapIndex % gapPattern.length];
+                center += nextGap;
+                if (center >= length) break;
+                positions.push(center);
+                gapIndex++;
+            }
+
+            // Remove last if gap < 116
+            if (positions.length > 0) {
+                let lastGap = length - positions[positions.length - 1];
+                if (lastGap < 116) positions.pop();
+            }
+
+            drawStiffeners(positions, typePattern, ratio, panel, summary);
+        }
+
+        // -------- Draw Stiffeners Function --------
+        function drawStiffeners(positions, typePattern, ratio, panel, summary, typeCountInput) {
+
+            
+            let typeCount = typeCountInput || { u: 0, ulip: 0, i: 0 };
+
+            let cumulative = 0;
+let gauges = [];
+
+
+            positions.forEach((pos, i) => {
+                let type = typePattern[i % typePattern.length];
+                let stiff = document.createElement("div");
+                stiff.classList.add("stiffener", type);
+                stiff.style.left = (pos * ratio) + "px";
+                panel.appendChild(stiff);
+                typeCount[type]++;
+
+                let gapValue = (i === 0) ? pos : pos - positions[i - 1];
+                let gapLabel = document.createElement("div");
+                gapLabel.className = "label";
+                gapLabel.innerText = "Gap: " + gapValue + "MM";
+                gapLabel.style.left = (pos * ratio - 20) + "px";
+
+
+                // Determine stiffener width
+// --- Gauge calculation ---
+// --- Correct Gauge Calculation ---
+let stiffWidth = (type === "u") ? 25 :
+                 (type === "ulip") ? 35 :
+                 10;
+
+let gaugeValue = pos - stiffWidth;
+
+if (!drawStiffeners.gaugeValues)
+    drawStiffeners.gaugeValues = [];
+
+drawStiffeners.gaugeValues.push(gaugeValue);
+
+
+
+
+                panel.appendChild(gapLabel);
+
+                let typeLabel = document.createElement("div");
+                typeLabel.style.position = "absolute";
+                typeLabel.style.bottom = "-25px";
+                typeLabel.style.left = (pos * ratio - 25) + "px";
+                typeLabel.style.fontSize = "13px";
+                if (type === "u") typeLabel.innerText = "Stiff-U";
+                if (type === "ulip") typeLabel.innerText = "Stiff-U Lip";
+                if (type === "i") typeLabel.innerText = "Stiff-I";
+                panel.appendChild(typeLabel);
+            });
+
+
+            // --- Show gauge values ---
+let gaugeDiv = document.getElementById("gauge");
+if (!gaugeDiv) {
+    gaugeDiv = document.createElement("div");
+    gaugeDiv.id = "gauge";
+    gaugeDiv.style.marginTop = "10px";
+    gaugeDiv.style.color = "#ffffff";
+    document.querySelector(".container").appendChild(gaugeDiv);
+}
+gaugeDiv.innerText = drawStiffeners.gaugeValues.join(" , ");
+
+// Reset for next generation
+drawStiffeners.cumulativeGauge = 0;
+drawStiffeners.gaugeValues = [];
+
+
+            summary.innerHTML = `Total Stiffeners: ${positions.length} <br>
+                Stiff-U Count: ${typeCount.u} <br>
+                Stiff-U Lip Count: ${typeCount.ulip} <br>
+                Stiff-I Count: ${typeCount.i}`;
+
+
+  
+
+
+        }
+
+        // Show cumulative gauges in one line
+
+
+
+        window.onload = function () {
+            document.getElementById("width").value = 600;
+            document.getElementById("length").value = 2400;
+            document.getElementById("customer").selectedIndex = 0;
+            resetPanel();
+        };
+
+        function resetPanel() {
+            document.getElementById("panel").innerHTML = "";
+            document.getElementById("summary").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>
