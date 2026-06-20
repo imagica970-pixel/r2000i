@@ -1,3 +1,6 @@
+let rootFolder;
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -532,7 +535,6 @@ function setFixtureData() {
         document.getElementById("u1").value = 4;
         document.getElementById("u2").value = 5;
         document.getElementById("u3").value = 6;
-		document.getElementById("u4").value = 8;
         document.getElementById("tl").value = 1;
 		document.getElementById("ccp").value = "ct";
 
@@ -543,7 +545,6 @@ function setFixtureData() {
         document.getElementById("u1").value = 1;
         document.getElementById("u2").value = 2;
         document.getElementById("u3").value = 3;
-		document.getElementById("u4").value = 7;
         document.getElementById("tl").value = 1;
 		document.getElementById("ccp").value = "ct";
 
@@ -561,152 +562,6 @@ function setFixtureData() {
 
 
 
-function updateProgramName() {
-
-    let customer = document.getElementById("customer").value;
-    let fixture = document.getElementById("fixtureSide").value;
-    let width = document.getElementById("wh").value;
-    let length = document.getElementById("lh").value;
-
-    if (!customer || !fixture || !width || !length) {
-        return;
-    }
-
-    let fixtureLetter = fixture === "lefts" ? "L" : "R";
-
-    let widthPart = width.substring(0, 2);
-    let lengthPart = length.substring(0, 3);
-
-    let programName = "";
-
-    // RAGHAVAN
-    if (customer === "raghvan") {
-
-        programName =
-            "R" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    // KALPATARU
-    else if (customer === "kalpataru") {
-
-        programName =
-            "K" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    // STDREV
-    else if (customer === "stdrev") {
-
-        programName =
-            "S" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    // STDREV DECK
-    else if (customer === "stdrevdeck") {
-
-        programName =
-            "SD" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    // KALPATARU DECK
-    else if (customer === "kalptarudeck") {
-
-        programName =
-            "KD" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    // LODHA
-    else if (customer === "lodha") {
-
-        programName =
-            "L" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    // FORSA
-    else if (customer === "forsa") {
-
-        programName =
-            "F" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    // WT
-    else if (customer === "wt") {
-
-        programName =
-            "W" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    // NEW LODHA
-    else if (customer === "ip") {
-
-        programName =
-            "NL" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    // NONSTANDARD
-    else if (customer === "nonstandard") {
-
-        programName =
-            "X" +
-            fixtureLetter +
-            widthPart +
-            "_" +
-            lengthPart;
-
-    }
-
-    document.getElementById("nm").value = programName;
-}
-
-
-document.getElementById("customer").addEventListener("change", updateProgramName);
-document.getElementById("fixtureSide").addEventListener("change", updateProgramName);
-document.getElementById("wh").addEventListener("input", updateProgramName);
-document.getElementById("lh").addEventListener("input", updateProgramName);
 
 
 
@@ -748,7 +603,6 @@ function LS() {
 	let uframe = document.getElementById('u1').value
 	let rframe = document.getElementById('u2').value
 	let nframe = document.getElementById('u3').value
-	let fframe = document.getElementById('u4').value
 	let pname = document.getElementById('nm').value
 	let fix = document.getElementById('tp')
 	let stiff1 = Number(document.getElementById('sty1')?.value || 0);
@@ -2736,7 +2590,7 @@ CONTROL_CODE	= 00000000 00000000;
 
 	u6 =
 
-		`	788: UFRAME_NUM=${fframe} ;
+		`	788: UFRAME_NUM=${uframe} ;
 `
 
 
@@ -6991,55 +6845,55 @@ P[629]{
 		`
 P[630]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y75} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[631]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y75} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[632]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y75} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[633]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y83} mm,	Z = ${z09} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[634]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y83} mm,	Z = ${z09} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[635]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y91} mm,	Z = ${z09} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[636]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y91} mm,	Z = ${z09} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[637]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y75} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[638]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y75} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
@@ -7049,49 +6903,49 @@ P[638]{
 		`
 P[639]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y76} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[640]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y76} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[641]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y84} mm,	Z = ${z10} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[642]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y84} mm,	Z = ${z10} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[643]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y92} mm,	Z = ${z10} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[644]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y92} mm,	Z = ${z10} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[645]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y76} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[646]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y76} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
@@ -7101,49 +6955,49 @@ P[646]{
 		`
 P[647]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y77} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[648]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y77} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[649]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y85} mm,	Z = ${z11} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[650]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y85} mm,	Z = ${z11} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[651]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y93} mm,	Z = ${z11} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[652]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y93} mm,	Z = ${z11} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[653]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y77} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[654]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y77} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
@@ -7153,49 +7007,49 @@ P[654]{
 		`
 P[655]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y78} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[656]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y78} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[657]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y86} mm,	Z = ${z12} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[658]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y86} mm,	Z = ${z12} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[659]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y94} mm,	Z = ${z12} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[660]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y94} mm,	Z = ${z12} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[661]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y78} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[662]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y78} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
@@ -7205,49 +7059,49 @@ P[662]{
 		`
 P[663]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y79} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[664]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y79} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[665]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y87} mm,	Z = ${z13} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[666]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y87} mm,	Z = ${z13} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[667]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y95} mm,	Z = ${z13} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[668]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y95} mm,	Z = ${z13} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[669]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y79} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[670]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y79} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
@@ -7257,49 +7111,49 @@ P[670]{
 		`
 P[671]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y80} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[672]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y80} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[673]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y88} mm,	Z = ${z14} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[674]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y88} mm,	Z = ${z14} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[675]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y96} mm,	Z = ${z14} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[676]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y96} mm,	Z = ${z14} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[677]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y80} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[678]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y80} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
@@ -7309,49 +7163,49 @@ P[678]{
 		`
 P[679]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y81} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[680]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y81} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[681]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y89} mm,	Z = ${z15} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[682]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y89} mm,	Z = ${z15} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[683]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y97} mm,	Z = ${z15} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[684]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y97} mm,	Z = ${z15} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[685]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y81} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[686]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y81} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
@@ -7361,49 +7215,49 @@ P[686]{
 		`
 P[687]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y82} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[688]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y82} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[689]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y90} mm,	Z = ${z16} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[690]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y90} mm,	Z = ${z16} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[691]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y98} mm,	Z = ${z16} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[692]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x07} mm,	Y = ${y98} mm,	Z = ${z16} mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[693]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y82} mm,	Z = -5.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
 P[694]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = ${x19} mm,	Y = ${y82} mm,	Z = 250.000 mm,
 	W = -144.138 deg,	P = 032.565 deg,	R = -105.918 deg
 };
@@ -7413,55 +7267,55 @@ P[694]{
 		`
 P[695]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y107} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[696]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y107} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[697]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y107} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[698]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y98} mm,	Z = ${z16} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[699]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y98} mm,	Z = ${z16} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[700]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y90} mm,	Z = ${z16} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[701]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y90} mm,	Z = ${z16} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[702]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y107} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[703]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y107} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
@@ -7471,49 +7325,49 @@ P[703]{
 		`
 P[704]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y106} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[705]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y106} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[706]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y97} mm,	Z = ${z15} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[707]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y97} mm,	Z = ${z15} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[708]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y89} mm,	Z = ${z15} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[709]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y89} mm,	Z = ${z15} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[710]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y106} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[711]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y106} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
@@ -7523,49 +7377,49 @@ P[711]{
 		`
 P[712]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y105} mm,	Z = 250.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[713]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y105} mm,	Z = -5.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[714]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y96} mm,	Z = ${z14} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[715]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y96} mm,	Z = ${z14} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[716]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y88} mm,	Z = ${z14} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[717]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y88} mm,	Z = ${z14} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[718]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y105} mm,	Z = -5.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[719]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y105} mm,	Z = 250.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
@@ -7575,49 +7429,49 @@ P[719]{
 		`
 P[720]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y104} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[721]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y104} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[722]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y95} mm,	Z = ${z13} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[723]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y95} mm,	Z = ${z13} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[724]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y87} mm,	Z = ${z13} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[725]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y87} mm,	Z = ${z13} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[726]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y104} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[727]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y104} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
@@ -7627,49 +7481,49 @@ P[727]{
 		`
 P[728]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y103} mm,	Z = 250.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[729]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y103} mm,	Z = -5.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[730]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y94} mm,	Z = ${z12} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[731]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y94} mm,	Z = ${z12} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[732]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y86} mm,	Z = ${z12} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[733]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y86} mm,	Z = ${z12} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[734]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y103} mm,	Z = -5.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[735]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y103} mm,	Z = 250.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
@@ -7679,49 +7533,49 @@ P[735]{
 		`
 P[736]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y102} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[737]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y102} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[738]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y93} mm,	Z = ${z11} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[739]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y93} mm,	Z = ${z11} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[740]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y85} mm,	Z = ${z11} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[741]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y85} mm,	Z = ${z11} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[742]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y102} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[743]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y102} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
@@ -7731,49 +7585,49 @@ P[743]{
 		`
 P[744]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y101} mm,	Z = 250.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[745]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y101} mm,	Z = -5.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[746]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y92} mm,	Z = ${z10} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[747]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y92} mm,	Z = ${z10} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[748]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y84} mm,	Z = ${z10} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[749]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y84} mm,	Z = ${z10} mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[750]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y101} mm,	Z = -5.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[751]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y101} mm,	Z = 250.000 mm,
 	W = 163.477 deg,	P = 044.567 deg,	R = -002.161 deg
 };
@@ -7783,49 +7637,49 @@ P[751]{
 		`
 P[752]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y100} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[753]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y100} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[754]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y91} mm,	Z = ${z09} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[755]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y91} mm,	Z = ${z09} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[756]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y83} mm,	Z = ${z09} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[757]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 008.000 mm,	Y = ${y83} mm,	Z = ${z09} mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[758]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y100} mm,	Z = -5.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
 P[759]{
  GP1:
-	UF : ${fframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
+	UF : ${uframe}, UT : ${tool}, CONFIG : 'N U T, 0, 0, 0',
 	X = 040.000 mm,	Y = ${y100} mm,	Z = 250.000 mm,
 	W = 163.478 deg,	P = 044.567 deg,	R = -002.161 deg
 };
@@ -7835,7 +7689,7 @@ P[759]{
 		`
 P[760]{
  GP1:
-	UF : ${fframe}, UT : ${tool},
+	UF : ${uframe}, UT : ${tool},
 	J1 = 000.000 deg,	J2 = -045.000 deg,	J3 = 000.000 deg,
 	J4 = 000.000 deg,	J5 = -090.000 deg,	J6 = 000.000 deg
 };
@@ -9984,41 +9838,41 @@ function condition() {
 	if (totalRows == 8 && width <= 600 && width >= 451 && fix.value == "WALL") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + st5 + st6 + st7 + st8 + u3 + nref + u4 + nst1 + nst2 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i5 + i6 + i7 + i8 + i11 + i12 + i13 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i26 + i27 + i28 + i31 + i32 + i33 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up8 + up11 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + stp5 + stp6 + stp7 + stp8 + nrefp + nstp1 + nstp2 + nstp3 + nstp4 + nstp5 + nstp6 + nstp7 + nstp8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip6 + ip7 + ip8 + ip11 + ip12 + ip13 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip26 + ip27 + ip28 + ip31 + ip32 + ip33 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp8 + upp11 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 7 && width <= 600 && width >= 451 && fix.value == "WALL") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + st5 + st6 + st7 + u3 + nref + u4 + nst2 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i5 + i6 + i7 + i12 + i13 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i26 + i27 + i32 + i33 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + stp5 + stp6 + stp7 + nrefp + nstp2 + nstp3 + nstp4 + nstp5 + nstp6 + nstp7 + nstp8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip6 + ip7 + ip12 + ip13 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip26 + ip27 + ip32 + ip33 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 6 && width <= 600 && width >= 451 && fix.value == "WALL") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + st5 + st6 + u3 + nref + u4 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i5 + i6 + i13 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i26 + i33 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + stp5 + stp6 + nrefp + nstp3 + nstp4 + nstp5 + nstp6 + nstp7 + nstp8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip6 + ip13 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip26 + ip33 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 	else if (totalRows == 5 && width <= 600 && width >= 451 && fix.value == "WALL") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + st5 + u3 + nref + u4 + nst4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i5 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up14 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + stp5 + nrefp + nstp4 + nstp5 + nstp6 + nstp7 + nstp8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 4 && width <= 600 && width >= 451 && fix.value == "WALL") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + u3 + nref + u4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + nrefp + nstp5 + nstp6 + nstp7 + nstp8 + ip1 + ip2 + ip3 + ip4 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 3 && width <= 600 && width >= 451 && fix.value == "WALL") {
 		lss = ref + u2 + st1 + st2 + st3 + u3 + nref + u4 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i16 + i17 + i18 + i21 + i22 + i23 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + nrefp + nstp6 + nstp7 + nstp8 + ip1 + ip2 + ip3 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10026,21 +9880,21 @@ function condition() {
 	else if (totalRows == 2 && width <= 600 && width >= 451 && fix.value == "WALL") {
 		lss = ref + u2 + st1 + st2 + u3 + nref + u4 + nst7 + nst8 + u5 + i1 + i2 + i17 + i18 + i21 + i22 + i37 + i38 + u6 + up1 + up2 + up17 + up18 + home + refp + stp1 + stp2 + nrefp + nstp7 + nstp8 + ip1 + ip2 + ip17 + ip18 + ip21 + ip22 + ip37 + ip38 + upp1 + upp2 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 1 && width <= 600 && width >= 451 && fix.value == "WALL") {
 		lss = ref + u2 + st1 + u3 + nref + u4 + nst8 + u5 + i1 + i18 + i21 + i38 + u6 + up1 + up18 + home + refp + stp1 + nrefp + nstp8 + ip1 + ip18 + ip21 + ip38 + upp1 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 0 && width <= 600 && width >= 451 && fix.value == "WALL") {
 		lss = ref + u2 + u3 + nref + u4 + u5 + home + refp + nrefp + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10052,41 +9906,41 @@ function condition() {
 	else if (totalRows == 8 && width <= 600 && width >= 451 && fix.value == "DECK") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + st5 + st6 + st7 + st8 + u3 + nref + u4 + nst1 + nst2 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up8 + up11 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + stp5 + stp6 + stp7 + stp8 + nrefp + nstp1 + nstp2 + nstp3 + nstp4 + nstp5 + nstp6 + nstp7 + nstp8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp8 + upp11 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 7 && width <= 600 && width >= 451 && fix.value == "DECK") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + st5 + st6 + st7 + u3 + nref + u4 + nst2 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + stp5 + stp6 + stp7 + nrefp + nstp2 + nstp3 + nstp4 + nstp5 + nstp6 + nstp7 + nstp8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 6 && width <= 600 && width >= 451 && fix.value == "DECK") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + st5 + st6 + u3 + nref + u4 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + stp5 + stp6 + nrefp + nstp3 + nstp4 + nstp5 + nstp6 + nstp7 + nstp8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 	else if (totalRows == 5 && width <= 600 && width >= 451 && fix.value == "DECK") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + st5 + u3 + nref + u4 + nst4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up5 + up14 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + stp5 + nrefp + nstp4 + nstp5 + nstp6 + nstp7 + nstp8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 4 && width <= 600 && width >= 451 && fix.value == "DECK") {
 		lss = ref + u2 + st1 + st2 + st3 + st4 + u3 + nref + u4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up15 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + stp4 + nrefp + nstp5 + nstp6 + nstp7 + nstp8 + upp1 + upp2 + upp3 + upp4 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 3 && width <= 600 && width >= 451 && fix.value == "DECK") {
 		lss = ref + u2 + st1 + st2 + st3 + u3 + nref + u4 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up16 + up17 + up18 + home + refp + stp1 + stp2 + stp3 + nrefp + nstp6 + nstp7 + nstp8 + upp1 + upp2 + upp3 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10094,21 +9948,21 @@ function condition() {
 	else if (totalRows == 2 && width <= 600 && width >= 451 && fix.value == "DECK") {
 		lss = ref + u2 + st1 + st2 + u3 + nref + u4 + nst7 + nst8 + u6 + up1 + up2 + up17 + up18 + home + refp + stp1 + stp2 + nrefp + nstp7 + nstp8 + upp1 + upp2 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 1 && width <= 600 && width >= 451 && fix.value == "DECK") {
 		lss = ref + u2 + st1 + u3 + nref + u4 + nst8 + u6 + up1 + up18 + home + refp + stp1 + nrefp + nstp8 + upp1 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 0 && width <= 600 && width >= 451 && fix.value == "DECK") {
 		lss = ref + u2 + u3 + nref + u4 + u5 + home + refp + nrefp + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10122,41 +9976,41 @@ function condition() {
 	else if (totalRows == 8 && width <= 450 && width >= 351 && fix.value == "WALL") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + stk5 + stk6 + stk7 + stk8 + u3 + nref + u4 + nst1 + nst2 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i5 + i6 + i7 + i8 + i11 + i12 + i13 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i26 + i27 + i28 + i31 + i32 + i33 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up8 + up11 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + stpk5 + stpk6 + stpk7 + stpk8 + nrefp + nstpk1 + nstpk2 + nstpk3 + nstpk4 + nstpk5 + nstpk6 + nstpk7 + nstpk8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip6 + ip7 + ip8 + ip11 + ip12 + ip13 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip26 + ip27 + ip28 + ip31 + ip32 + ip33 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp8 + upp11 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 7 && width <= 450 && width >= 351 && fix.value == "WALL") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + stk5 + stk6 + stk7 + u3 + nref + u4 + nst2 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i5 + i6 + i7 + i12 + i13 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i26 + i27 + i32 + i33 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + stpk5 + stpk6 + stpk7 + nrefp + nstpk2 + nstpk3 + nstpk4 + nstpk5 + nstpk6 + nstpk7 + nstpk8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip6 + ip7 + ip12 + ip13 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip26 + ip27 + ip32 + ip33 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 6 && width <= 450 && width >= 351 && fix.value == "WALL") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + stk5 + stk6 + u3 + nref + u4 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i5 + i6 + i13 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i26 + i33 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + stpk5 + stpk6 + nrefp + nstpk3 + nstpk4 + nstpk5 + nstpk6 + nstpk7 + nstpk8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip6 + ip13 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip26 + ip33 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 	else if (totalRows == 5 && width <= 450 && width >= 351 && fix.value == "WALL") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + stk5 + u3 + nref + u4 + nst4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i5 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up14 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + stpk5 + nrefp + nstpk4 + nstpk5 + nstpk6 + nstpk7 + nstpk8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 4 && width <= 450 && width >= 351 && fix.value == "WALL") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + u3 + nref + u4 + nst5 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i4 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + nrefp + nstpk5 + nstpk6 + nstpk7 + nstpk8 + ip1 + ip2 + ip3 + ip4 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 3 && width <= 450 && width >= 351 && fix.value == "WALL") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + u3 + nref + u4 + nst6 + nst7 + nst8 + u5 + i1 + i2 + i3 + i16 + i17 + i18 + i21 + i22 + i23 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + nrefp + nstpk6 + nstpk7 + nstpk8 + ip1 + ip2 + ip3 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10164,21 +10018,21 @@ function condition() {
 	else if (totalRows == 2 && width <= 450 && width >= 351 && fix.value == "WALL") {
 		lss = ref + u2 + stk1 + stk2 + u3 + nref + u4 + nst7 + nst8 + u5 + i1 + i2 + i17 + i18 + i21 + i22 + i37 + i38 + u6 + up1 + up2 + up17 + up18 + home + refp + stpk1 + stpk2 + nrefp + nstpk7 + nstpk8 + ip1 + ip2 + ip17 + ip18 + ip21 + ip22 + ip37 + ip38 + upp1 + upp2 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 1 && width <= 450 && width >= 351 && fix.value == "WALL") {
 		lss = ref + u2 + stk1 + u3 + nref + u4 + nst8 + u5 + i1 + i18 + i21 + i38 + u6 + up1 + up18 + home + refp + stpk1 + nrefp + nstpk8 + ip1 + ip18 + ip21 + ip38 + upp1 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 0 && width <= 450 && width >= 351 && fix.value == "WALL") {
 		lss = ref + u2 + u3 + nref + u4 + u5 + home + refp + nrefp + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10190,41 +10044,41 @@ function condition() {
 	else if (totalRows == 8 && width <= 450 && width >= 351 && fix.value == "DECK") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + stk5 + stk6 + stk7 + stk8 + u3 + nref + u4 + nst1 + nst2 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up8 + up11 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + stpk5 + stpk6 + stpk7 + stpk8 + nrefp + nstpk1 + nstpk2 + nstpk3 + nstpk4 + nstpk5 + nstpk6 + nstpk7 + nstpk8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp8 + upp11 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 7 && width <= 450 && width >= 351 && fix.value == "DECK") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + stk5 + stk6 + stk7 + u3 + nref + u4 + nst2 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + stpk5 + stpk6 + stpk7 + nrefp + nstpk2 + nstpk3 + nstpk4 + nstpk5 + nstpk6 + nstpk7 + nstpk8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 6 && width <= 450 && width >= 351 && fix.value == "DECK") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + stk5 + stk6 + u3 + nref + u4 + nst3 + nst4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + stpk5 + stpk6 + nrefp + nstpk3 + nstpk4 + nstpk5 + nstpk6 + nstpk7 + nstpk8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 	else if (totalRows == 5 && width <= 450 && width >= 351 && fix.value == "DECK") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + stk5 + u3 + nref + u4 + nst4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up5 + up14 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + stpk5 + nrefp + nstpk4 + nstpk5 + nstpk6 + nstpk7 + nstpk8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 4 && width <= 450 && width >= 351 && fix.value == "DECK") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + stk4 + u3 + nref + u4 + nst5 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up4 + up15 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + stpk4 + nrefp + nstpk5 + nstpk6 + nstpk7 + nstpk8 + upp1 + upp2 + upp3 + upp4 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 3 && width <= 450 && width >= 351 && fix.value == "DECK") {
 		lss = ref + u2 + stk1 + stk2 + stk3 + u3 + nref + u4 + nst6 + nst7 + nst8 + u6 + up1 + up2 + up3 + up16 + up17 + up18 + home + refp + stpk1 + stpk2 + stpk3 + nrefp + nstpk6 + nstpk7 + nstpk8 + upp1 + upp2 + upp3 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10232,21 +10086,21 @@ function condition() {
 	else if (totalRows == 2 && width <= 450 && width >= 351 && fix.value == "DECK") {
 		lss = ref + u2 + stk1 + stk2 + u3 + nref + u4 + nst7 + nst8 + u6 + up1 + up2 + up17 + up18 + home + refp + stpk1 + stpk2 + nrefp + nstpk7 + nstpk8 + upp1 + upp2 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 1 && width <= 450 && width >= 351 && fix.value == "DECK") {
 		lss = ref + u2 + stk1 + u3 + nref + u4 + nst8 + u6 + up1 + up18 + home + refp + stpk1 + nrefp + nstpk8 + upp1 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 0 && width <= 450 && width >= 351 && fix.value == "DECK") {
 		lss = ref + u2 + u3 + nref + u4 + u5 + home + refp + nrefp + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10263,41 +10117,41 @@ function condition() {
 	else if (totalRows == 8 && width <= 350 && width >= 255 && fix.value == "WALL") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + stm5 + stm6 + stm7 + stm8 + u3 + nref + u4 + nstm1 + nstm2 + nstm3 + nstm4 + nstm5 + nstm6 + nstm7 + nstm8 + u5 + i1 + i2 + i3 + i4 + i5 + i6 + i7 + i8 + i11 + i12 + i13 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i26 + i27 + i28 + i31 + i32 + i33 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up8 + up11 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + stpm5 + stpm6 + stpm7 + stpm8 + nrefp + nstpm1 + nstpm2 + nstpm3 + nstpm4 + nstpm5 + nstpm6 + nstpm7 + nstpm8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip6 + ip7 + ip8 + ip11 + ip12 + ip13 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip26 + ip27 + ip28 + ip31 + ip32 + ip33 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp8 + upp11 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 7 && width <= 350 && width >= 255 && fix.value == "WALL") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + stm5 + stm6 + stm7 + u3 + nref + u4 + nstm2 + nstm3 + nstm4 + nstm5 + nstm6 + nstm7 + nstm8 + u5 + i1 + i2 + i3 + i4 + i5 + i6 + i7 + i12 + i13 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i26 + i27 + i32 + i33 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + stpm5 + stpm6 + stpm7 + nrefp + nstpm2 + nstpm3 + nstpm4 + nstpm5 + nstpm6 + nstpm7 + nstpm8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip6 + ip7 + ip12 + ip13 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip26 + ip27 + ip32 + ip33 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 6 && width <= 350 && width >= 255 && fix.value == "WALL") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + stm5 + stm6 + u3 + nref + u4 + nstm3 + nstm4 + nstm5 + nstm6 + nstm7 + nstm8 + u5 + i1 + i2 + i3 + i4 + i5 + i6 + i13 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i26 + i33 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + stpm5 + stpm6 + nrefp + nstpm3 + nstpm4 + nstpm5 + nstpm6 + nstpm7 + nstpm8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip6 + ip13 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip26 + ip33 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 	else if (totalRows == 5 && width <= 350 && width >= 255 && fix.value == "WALL") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + stm5 + u3 + nref + u4 + nstm4 + nstm5 + nstm6 + nstm7 + nstm8 + u5 + i1 + i2 + i3 + i4 + i5 + i14 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i25 + i34 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up5 + up14 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + stpm5 + nrefp + nstpm4 + nstpm5 + nstpm6 + nstpm7 + nstpm8 + ip1 + ip2 + ip3 + ip4 + ip5 + ip14 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip25 + ip34 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp5 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 4 && width <= 350 && width >= 255 && fix.value == "WALL") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + u3 + nref + u4 + nstm5 + nstm6 + nstm7 + nstm8 + u5 + i1 + i2 + i3 + i4 + i15 + i16 + i17 + i18 + i21 + i22 + i23 + i24 + i35 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up4 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + nrefp + nstpm5 + nstpm6 + nstpm7 + nstpm8 + ip1 + ip2 + ip3 + ip4 + ip15 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip24 + ip35 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp4 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 3 && width <= 350 && width >= 255 && fix.value == "WALL") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + u3 + nref + u4 + nstm6 + nstm7 + nstm8 + u5 + i1 + i2 + i3 + i16 + i17 + i18 + i21 + i22 + i23 + i36 + i37 + i38 + u6 + up1 + up2 + up3 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + nrefp + nstpm6 + nstpm7 + nstpm8 + ip1 + ip2 + ip3 + ip16 + ip17 + ip18 + ip21 + ip22 + ip23 + ip36 + ip37 + ip38 + upp1 + upp2 + upp3 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10305,21 +10159,21 @@ function condition() {
 	else if (totalRows == 2 && width <= 350 && width >= 255 && fix.value == "WALL") {
 		lss = ref + u2 + stm1 + stm2 + u3 + nref + u4 + nstm7 + nstm8 + u5 + i1 + i2 + i17 + i18 + i21 + i22 + i37 + i38 + u6 + up1 + up2 + up17 + up18 + home + refp + stpm1 + stpm2 + nrefp + nstpm7 + nstpm8 + ip1 + ip2 + ip17 + ip18 + ip21 + ip22 + ip37 + ip38 + upp1 + upp2 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 1 && width <= 350 && width >= 255 && fix.value == "WALL") {
 		lss = ref + u2 + stm1 + u3 + nref + u4 + nstm8 + u5 + i1 + i18 + i21 + i38 + u6 + up1 + up18 + home + refp + stpm1 + nrefp + nstpm8 + ip1 + ip18 + ip21 + ip38 + upp1 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 0 && width <= 350 && width >= 255 && fix.value == "WALL") {
 		lss = ref + u2 + u3 + nref + u4 + u5 + home + refp + nrefp + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10331,41 +10185,41 @@ function condition() {
 	else if (totalRows == 8 && width <= 350 && width >= 255 && fix.value == "DECK") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + stm5 + stm6 + stm7 + stm8 + u3 + nref + u4 + nstm1 + nstm2 + nstm3 + nstm4 + nstm5 + nstm6 + nstm7 + nstm8 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up8 + up11 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + stpm5 + stpm6 + stpm7 + stpm8 + nrefp + nstpm1 + nstpm2 + nstpm3 + nstpm4 + nstpm5 + nstpm6 + nstpm7 + nstpm8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp8 + upp11 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 7 && width <= 350 && width >= 255 && fix.value == "DECK") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + stm5 + stm6 + stm7 + u3 + nref + u4 + nstm2 + nstm3 + nstm4 + nstm5 + nstm6 + nstm7 + nstm8 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up7 + up12 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + stpm5 + stpm6 + stpm7 + nrefp + nstpm2 + nstpm3 + nstpm4 + nstpm5 + nstpm6 + nstpm7 + nstpm8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp7 + upp12 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 6 && width <= 350 && width >= 255 && fix.value == "DECK") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + stm5 + stm6 + u3 + nref + u4 + nstm3 + nstm4 + nstm5 + nstm6 + nstm7 + nstm8 + u6 + up1 + up2 + up3 + up4 + up5 + up6 + up13 + up14 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + stpm5 + stpm6 + nrefp + nstpm3 + nstpm4 + nstpm5 + nstpm6 + nstpm7 + nstpm8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp6 + upp13 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 	else if (totalRows == 5 && width <= 350 && width >= 255 && fix.value == "DECK") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + stm5 + u3 + nref + u4 + nstm4 + nstm5 + nstm6 + nstm7 + nstm8 + u6 + up1 + up2 + up3 + up4 + up5 + up14 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + stpm5 + nrefp + nstpm4 + nstpm5 + nstpm6 + nstpm7 + nstpm8 + upp1 + upp2 + upp3 + upp4 + upp5 + upp14 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 4 && width <= 350 && width >= 255 && fix.value == "DECK") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + stm4 + u3 + nref + u4 + nstm5 + nstm6 + nstm7 + nstm8 + u6 + up1 + up2 + up3 + up4 + up15 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + stpm4 + nrefp + nstpm5 + nstpm6 + nstpm7 + nstpm8 + upp1 + upp2 + upp3 + upp4 + upp15 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 3 && width <= 350 && width >= 255 && fix.value == "DECK") {
 		lss = ref + u2 + stm1 + stm2 + stm3 + u3 + nref + u4 + nstm6 + nstm7 + nstm8 + u6 + up1 + up2 + up3 + up16 + up17 + up18 + home + refp + stpm1 + stpm2 + stpm3 + nrefp + nstpm6 + nstpm7 + nstpm8 + upp1 + upp2 + upp3 + upp16 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10373,21 +10227,21 @@ function condition() {
 	else if (totalRows == 2 && width <= 350 && width >= 255 && fix.value == "DECK") {
 		lss = ref + u2 + stm1 + stm2 + u3 + nref + u4 + nstm7 + nstm8 + u6 + up1 + up2 + up17 + up18 + home + refp + stpm1 + stpm2 + nrefp + nstpm7 + nstpm8 + upp1 + upp2 + upp17 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 1 && width <= 350 && width >= 255 && fix.value == "DECK") {
 		lss = ref + u2 + stm1 + u3 + nref + u4 + nstm8 + u6 + up1 + up18 + home + refp + stpm1 + nrefp + nstpm8 + upp1 + upp18 + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
 	else if (totalRows == 0 && width <= 350 && width >= 255 && fix.value == "DECK") {
 		lss = ref + u2 + u3 + nref + u4 + u5 + home + refp + nrefp + homep;
 		alert("Program Gentaed Succesfully");
-		window.location.reload();
+		 
 	}
 
 
@@ -10416,81 +10270,50 @@ function condition() {
 
 
 
-
-
-
-
-function downloadSrcFile() {
-	LS();
-	condition();
-
-	let pname = document.getElementById('nm').value
-
-
-
-	// Get the user input from the textarea
-
-	userInput = lss;
-
-	// Create a Blob with the user input
-	const blob = new Blob([userInput], { type: 'text/plain' });
-
-	// Create a link element
-	const link = document.createElement('a');
-
-	// Set the download attribute with a filename
-	link.download = `${pname}.ls`;
-
-	// Create a URL for the Blob and set it as the href attribute
-	link.href = window.URL.createObjectURL(blob);
-
-	// Append the link to the body
-	document.body.appendChild(link);
-
-	// Programmatically click the link to trigger the download
-	link.click();
-
-	// Remove the link from the document
-	document.body.removeChild(link);
-
-
-
+async function selectFolder() {
+    rootFolder = await window.showDirectoryPicker();
+    alert("Folder Selected");
 }
 
 
 
-// async function downloadSrcFile() {
 
+async function downloadSrcFile() {
 
-// 	 alert("TEST 123");
-//     LS();
-//     condition();
+    LS();
+    condition();
 
-//     let pname = document.getElementById('nm').value;
+    let pname = document.getElementById('nm').value;
 
-//     try {
+    userInput = lss;
 
-//         const response = await fetch("http://127.0.0.1:5000/save_ls", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({
-//                 filename: `${pname}.LS`,
-//                 content: lss
-//             })
-//         });
+    if (!rootFolder) {
+        alert("Please select save folder first.");
+        return;
+    }
 
-//         const result = await response.json();
+    const today = new Date();
 
-//         if (result.success) {
-//             alert("File Saved:\n" + result.path);
-//         }
+    const folderName =
+        today.getFullYear() + "-" +
+        String(today.getMonth() + 1).padStart(2, '0') + "-" +
+        String(today.getDate()).padStart(2, '0');
 
-//     } catch (error) {
+    const dateFolder = await rootFolder.getDirectoryHandle(
+        folderName,
+        { create: true }
+    );
 
-//         console.error(error);
-//         alert("Cannot connect to Python server");
+    const fileHandle = await dateFolder.getFileHandle(
+        `${pname}.ls`,
+        { create: true }
+    );
 
-//     }
-// }
+    const writable = await fileHandle.createWritable();
+
+    await writable.write(userInput);
+
+    await writable.close();
+
+    alert(`${pname}.ls saved successfully`);
+}
